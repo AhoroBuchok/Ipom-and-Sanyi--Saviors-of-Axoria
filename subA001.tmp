@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dagq2j3gxxjk6"]
+
+[ext_resource type="PackedScene" uid="uid://dhma7or0njfgr" path="res://scene.tscn" id="2_hvjuq"]
+
+[sub_resource type="Environment" id="Environment_1uv4g"]
+background_mode = 1
+background_color = Color(0.0860081, 0.0913308, 0.192748, 1)
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+offset_left = 154.0
+offset_top = -1.0
+offset_right = 911.0
+offset_bottom = 647.0
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(997, 648)
+render_target_update_mode = 4
+
+[node name="scene" parent="SubViewport" instance=ExtResource("2_hvjuq")]
+clone = ExtResource("2_hvjuq")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport"]
+environment = SubResource("Environment_1uv4g")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
+transform = Transform3D(0.768605, -0.00283116, 0.639717, 0.00222142, 0.999996, 0.00175664, -0.639719, 7.092e-05, 0.768609, 0, 0, -6.30213)
+light_energy = 0.354
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.870862, 0.491527, 0, -0.491527, 0.870862, 0, 5.59318, 16.8318)

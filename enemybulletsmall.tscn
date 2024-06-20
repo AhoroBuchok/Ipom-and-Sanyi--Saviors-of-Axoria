@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://b21tfuuikdav0"]
+
+[ext_resource type="Texture2D" uid="uid://dq0kr1w1nyj26" path="res://icon.svg" id="1_bgiho"]
+[ext_resource type="Script" path="res://enemybulletsmall.gd" id="1_m6o2j"]
+[ext_resource type="Texture2D" uid="uid://buv51smxl765q" path="res://bullets/inkparticle.png" id="3_swcu8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q5o1c"]
+radius = 60.974
+
+[node name="choi bulletsmall" type="CharacterBody2D"]
+scale = Vector2(0.141082, 0.141082)
+script = ExtResource("1_m6o2j")
+
+[node name="Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-1, -2)
+texture = ExtResource("1_bgiho")
+
+[node name="choi bulletsmall" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 21
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choi bulletsmall"]
+shape = SubResource("CircleShape2D_q5o1c")
+
+[node name="Inkparticle" type="Sprite2D" parent="."]
+position = Vector2(7.08808, -9.53674e-07)
+scale = Vector2(2.18673, 2.18673)
+texture = ExtResource("3_swcu8")
+
+[connection signal="area_entered" from="choi bulletsmall" to="." method="_on_choi_bulletsmall_area_entered"]

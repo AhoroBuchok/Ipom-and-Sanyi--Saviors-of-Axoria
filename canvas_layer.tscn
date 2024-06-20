@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://csb0xkp52eewc"]
+
+[ext_resource type="Script" path="res://CanvasLayer.gd" id="1_63tce"]
+[ext_resource type="Texture2D" uid="uid://6w03dplcl6us" path="res://mweipahnfephjwf.png" id="2_fu8bh"]
+[ext_resource type="Texture2D" uid="uid://bs214j5dbsf5l" path="res://combometer/Combooutline.png" id="3_np27p"]
+[ext_resource type="FontFile" uid="uid://d1u2hwuxxqe4u" path="res://bullets/FORTE.TTF" id="3_wbl1x"]
+[ext_resource type="Texture2D" uid="uid://b4x2qeg0uclgl" path="res://comborainbow.png" id="4_6jfna"]
+[ext_resource type="Shader" path="res://mak.gdshader" id="4_gxpcu"]
+[ext_resource type="Texture2D" uid="uid://dq0kr1w1nyj26" path="res://icon.svg" id="5_f88iw"]
+[ext_resource type="PackedScene" uid="uid://dbdgat5nhdmq7" path="res://Pause.tscn" id="8_3wkyp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c5b15"]
+shader = ExtResource("4_gxpcu")
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_63tce")
+
+[node name="Mweipahnfephjwf" type="Sprite2D" parent="."]
+position = Vector2(500.871, 320.75)
+scale = Vector2(2.86783, 2.89254)
+texture = ExtResource("2_fu8bh")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 47.0
+offset_top = 204.0
+offset_right = 131.0
+offset_bottom = 272.0
+theme_override_fonts/font = ExtResource("3_wbl1x")
+theme_override_font_sizes/font_size = 49
+text = "100"
+
+[node name="Combooutline" type="Sprite2D" parent="."]
+position = Vector2(379, 608)
+texture = ExtResource("3_np27p")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="Comborainbow" type="Sprite2D" parent="BackBufferCopy"]
+position = Vector2(379, 608)
+texture = ExtResource("4_6jfna")
+
+[node name="mask" type="Sprite2D" parent="BackBufferCopy"]
+material = SubResource("ShaderMaterial_c5b15")
+position = Vector2(437, 597)
+scale = Vector2(-2.84, 1)
+texture = ExtResource("5_f88iw")
+
+[node name="test" type="Sprite2D" parent="BackBufferCopy/mask"]
+visible = false
+position = Vector2(17.2535, 17)
+rotation = 3.14159
+scale = Vector2(0.352113, -1)
+texture = ExtResource("5_f88iw")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("8_3wkyp")]
+
+[node name="Level" type="Label" parent="."]
+offset_left = 262.0
+offset_top = 545.0
+offset_right = 302.0
+offset_bottom = 569.0
+theme_override_fonts/font = ExtResource("3_wbl1x")
+text = "LV:"

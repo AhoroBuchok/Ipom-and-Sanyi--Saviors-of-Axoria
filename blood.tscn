@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4fc4wvomx0x4"]
+
+[ext_resource type="Script" path="res://blood.gd" id="2_0p8kj"]
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_nk55n"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_af0sp"]
+particle_flag_disable_z = true
+angle_min = -663.4
+angle_max = -404.5
+spread = 180.0
+angular_velocity_min = 426.02
+angular_velocity_max = 426.02
+directional_velocity_min = -250.79
+directional_velocity_max = 186.07
+directional_velocity_curve = SubResource("CurveXYZTexture_nk55n")
+gravity = Vector3(0, 1000, 0)
+scale_min = 2.0
+scale_max = 2.0
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+scale = Vector2(0.996878, 0.917321)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_af0sp")
+collision_base_size = 0.0
+script = ExtResource("2_0p8kj")

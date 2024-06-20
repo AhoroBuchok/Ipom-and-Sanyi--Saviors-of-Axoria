@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dni8g777ttvui"]
+
+[ext_resource type="Script" path="res://Small Squid/Homingbullet.gd" id="1_h8pcj"]
+[ext_resource type="Texture2D" uid="uid://dq0kr1w1nyj26" path="res://icon.svg" id="2_5250g"]
+[ext_resource type="Texture2D" uid="uid://c66nwnwfwanh" path="res://bullets/blud.png" id="3_03cgb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q5o1c"]
+radius = 60.974
+
+[node name="choi bulletsmall" type="CharacterBody2D"]
+scale = Vector2(0.141082, 0.141082)
+script = ExtResource("1_h8pcj")
+
+[node name="Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-1, -2)
+texture = ExtResource("2_5250g")
+
+[node name="choi bulletsmall" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 21
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choi bulletsmall"]
+shape = SubResource("CircleShape2D_q5o1c")
+
+[node name="Blud" type="Sprite2D" parent="."]
+position = Vector2(0, 14.1762)
+scale = Vector2(4.04404, 4.04404)
+texture = ExtResource("3_03cgb")
+
+[node name="0_5" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="1_5" type="Timer" parent="."]
+
+[connection signal="area_entered" from="choi bulletsmall" to="." method="_on_choi_bulletsmall_area_entered"]
+[connection signal="timeout" from="0_5" to="." method="_on__5_timeout"]
+[connection signal="timeout" from="1_5" to="." method="_on_15_timeout"]

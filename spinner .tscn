@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://d240vymy4smqh"]
+
+[ext_resource type="Script" path="res://spinner.gd" id="1_1dptn"]
+[ext_resource type="Texture2D" uid="uid://m2i4rxnkjb6e" path="res://spinner/TentacleR pinner.png" id="2_7g3yn"]
+[ext_resource type="PackedScene" uid="uid://dp3aqvuxmaeac" path="res://SmallSquid.tscn" id="2_aefsm"]
+[ext_resource type="Texture2D" uid="uid://br83t5kr5b4e" path="res://spinner/TentacleL spinner.png" id="3_h501a"]
+[ext_resource type="Texture2D" uid="uid://bag8cxq8pwdq3" path="res://spinner/headspinnger.png" id="4_gkm5q"]
+[ext_resource type="FontFile" uid="uid://d1u2hwuxxqe4u" path="res://bullets/FORTE.TTF" id="5_h3c3i"]
+[ext_resource type="AudioStream" uid="uid://c6or21kmq44ol" path="res://sfx/hit.wav" id="6_lwcyp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fn4bq"]
+radius = 16.6581
+
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("1_1dptn")
+bois = ExtResource("2_aefsm")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(-65, 0)
+scale = Vector2(1.48791, 1.48791)
+texture = ExtResource("2_7g3yn")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(0, 65)
+scale = Vector2(1.20636, 1.20636)
+texture = ExtResource("2_7g3yn")
+
+[node name="Icon4" type="Sprite2D" parent="."]
+position = Vector2(0, -65)
+scale = Vector2(1.10108, 1.10108)
+texture = ExtResource("3_h501a")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(65, 0)
+scale = Vector2(0.878311, 0.917756)
+texture = ExtResource("3_h501a")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.145
+one_shot = true
+autostart = true
+
+[node name="Headspinnger" type="Sprite2D" parent="."]
+position = Vector2(-4, -3)
+texture = ExtResource("4_gkm5q")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2, -4)
+scale = Vector2(3.11467, 3.11467)
+shape = SubResource("CircleShape2D_fn4bq")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -94.0
+offset_top = 18.0
+offset_right = 119.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("5_h3c3i")
+theme_override_font_sizes/font_size = 36
+text = "I'm 200 hp :D"
+
+[node name="hit sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_lwcyp")
+volume_db = 11.243
+
+[node name="Timer2" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

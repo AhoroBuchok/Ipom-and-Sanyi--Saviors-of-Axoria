@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c63lk655t8ef5"]
+
+[ext_resource type="Script" path="res://line.gd" id="1_3bcsm"]
+[ext_resource type="Texture2D" uid="uid://bk2s4p55m4onh" path="res://line.png" id="2_sxbnw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5w0n"]
+size = Vector2(141, 1824.18)
+
+[node name="line" type="CharacterBody2D"]
+script = ExtResource("1_3bcsm")
+
+[node name="Line" type="Sprite2D" parent="."]
+position = Vector2(63.5, -63.5)
+scale = Vector2(21.6719, 21.6719)
+texture = ExtResource("2_sxbnw")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(38.2089, -52.8754)
+rotation = 0.788105
+shape = SubResource("RectangleShape2D_n5w0n")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

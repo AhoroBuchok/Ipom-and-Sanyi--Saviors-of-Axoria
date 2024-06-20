@@ -1,0 +1,179 @@
+[gd_scene load_steps=19 format=3 uid="uid://du3ifchrffjcd"]
+
+[ext_resource type="PackedScene" uid="uid://dlu3ik6mjs8pv" path="res://Ipom.tscn" id="1_pg1yn"]
+[ext_resource type="Script" path="res://Mainframe.gd" id="1_rhkoc"]
+[ext_resource type="PackedScene" uid="uid://dup6tdwutv1ab" path="res://Normiequid.tscn" id="2_bb6p5"]
+[ext_resource type="PackedScene" uid="uid://csb0xkp52eewc" path="res://canvas_layer.tscn" id="3_o3leu"]
+[ext_resource type="PackedScene" uid="uid://d240vymy4smqh" path="res://spinner .tscn" id="4_521io"]
+[ext_resource type="AudioStream" uid="uid://c2jg6r0sb00nj" path="res://music/Ipom and Sanyi.mp3" id="5_uuk5c"]
+[ext_resource type="PackedScene" uid="uid://dagq2j3gxxjk6" path="res://sub_viewport_container.tscn" id="6_upsfe"]
+[ext_resource type="PackedScene" uid="uid://dp3aqvuxmaeac" path="res://SmallSquid.tscn" id="7_wl81f"]
+[ext_resource type="FontFile" uid="uid://d1u2hwuxxqe4u" path="res://bullets/FORTE.TTF" id="8_spyj0"]
+[ext_resource type="Script" path="res://Node.gd" id="9_ugqjy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mshte"]
+size = Vector2(20, 661)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epk3l"]
+size = Vector2(1166, 20)
+
+[sub_resource type="Animation" id="Animation_w3fvg"]
+resource_name = "Stage show"
+length = 1.8235
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.7, 1.2, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_r1k3x"]
+resource_name = "fade in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer2/ColorRect:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a53jl"]
+resource_name = "fade out"
+length = 7.3245
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer2/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nc7kc"]
+_data = {
+"Stage show": SubResource("Animation_w3fvg"),
+"fade in": SubResource("Animation_r1k3x"),
+"fade out": SubResource("Animation_a53jl")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_guxmy"]
+size = Vector2(37.5, 1284)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mgak"]
+size = Vector2(1711, 20)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_rhkoc")
+Enemy = ExtResource("2_bb6p5")
+Small = ExtResource("7_wl81f")
+spinner = ExtResource("4_521io")
+
+[node name="SubViewportContainer" parent="." instance=ExtResource("6_upsfe")]
+offset_left = 162.0
+offset_top = 0.0
+offset_right = 1159.0
+offset_bottom = 648.0
+
+[node name="Ipom" parent="." instance=ExtResource("1_pg1yn")]
+position = Vector2(640, 515)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("3_o3leu")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(11, 10, 166, 0, 212, 641, 40, 706, -136, 558, 0, -4)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1147, 324.5)
+shape = SubResource("RectangleShape2D_mshte")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(573, 0)
+shape = SubResource("RectangleShape2D_epk3l")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(589, 645)
+shape = SubResource("RectangleShape2D_epk3l")
+
+[node name="Music1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_uuk5c")
+autoplay = true
+bus = &"music"
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(269, 85)
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 390.0
+offset_top = 227.0
+offset_right = 904.0
+offset_bottom = 377.0
+theme_override_fonts/font = ExtResource("8_spyj0")
+theme_override_font_sizes/font_size = 136
+text = "STAGE 1 "
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nc7kc")
+}
+autoplay = "Stage show"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+autostart = true
+
+[node name="finalpoint" type="Area2D" parent="."]
+collision_layer = 255
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="finalpoint"]
+position = Vector2(-323, 353)
+shape = SubResource("RectangleShape2D_guxmy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="finalpoint"]
+position = Vector2(1431.75, 374)
+shape = SubResource("RectangleShape2D_guxmy")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="finalpoint"]
+position = Vector2(592, 981)
+shape = SubResource("RectangleShape2D_1mgak")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="finalpoint"]
+position = Vector2(566, -262)
+shape = SubResource("RectangleShape2D_1mgak")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
+modulate = Color(0, 0, 0, 0)
+offset_left = -54.0
+offset_top = -29.0
+offset_right = 1199.0
+offset_bottom = 684.0
+color = Color(0, 0, 0, 1)
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("9_ugqjy")
+
+[connection signal="die" from="." to="Node" method="_on_node_2d_die"]
+[connection signal="finished" from="Music1" to="." method="_on_music_1_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

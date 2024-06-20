@@ -1,0 +1,87 @@
+[gd_scene load_steps=14 format=3 uid="uid://dlu3ik6mjs8pv"]
+
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_vedlo"]
+[ext_resource type="PackedScene" uid="uid://bmc7jcb4i2qbo" path="res://Ipombanana.tscn" id="2_2wwva"]
+[ext_resource type="PackedScene" uid="uid://dv2lfn5aou8nc" path="res://Ipombullet.tscn" id="2_putqh"]
+[ext_resource type="Texture2D" uid="uid://dqio8203171ka" path="res://Ipom/time t time_0000.png" id="2_qh5gb"]
+[ext_resource type="Texture2D" uid="uid://3ge5wnm635ht" path="res://Ipom/time t time_0001.png" id="3_32wat"]
+[ext_resource type="Texture2D" uid="uid://c7ond4xu2eci2" path="res://Ipom/time t time_0002.png" id="4_pgckw"]
+[ext_resource type="AudioStream" uid="uid://cgqpir24x6pq1" path="res://shoot.wav" id="6_l6lld"]
+[ext_resource type="AudioStream" uid="uid://debwdqhoe8xai" path="res://sfx/combo1.wav" id="7_gp71o"]
+[ext_resource type="AudioStream" uid="uid://b6j78avdpxf48" path="res://sfx/combo2.wav" id="8_xgabv"]
+[ext_resource type="AudioStream" uid="uid://ckjehxcyrf6s3" path="res://sfx/Ipom Hit.wav" id="9_1csxj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_blpnq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qh5gb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_32wat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pgckw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_445gk"]
+size = Vector2(38, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewtqe"]
+size = Vector2(20, 14)
+
+[node name="Ipom" type="CharacterBody2D"]
+collision_mask = 16
+script = ExtResource("1_vedlo")
+bullet = ExtResource("2_putqh")
+bananas = ExtResource("2_2wwva")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.33, 0.33)
+sprite_frames = SubResource("SpriteFrames_blpnq")
+frame_progress = 0.944015
+
+[node name="IpomHitbox" type="Area2D" parent="."]
+collision_mask = 26
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IpomHitbox"]
+shape = SubResource("RectangleShape2D_445gk")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(8, -30)
+
+[node name="Shoot Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_l6lld")
+bus = &"sfx"
+
+[node name="Combo1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_gp71o")
+volume_db = 10.36
+
+[node name="Combo2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_xgabv")
+volume_db = 10.36
+
+[node name="hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_1csxj")
+volume_db = 10.306
+
+[node name="Invincibility timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_ewtqe")
+
+[connection signal="area_entered" from="IpomHitbox" to="." method="_on_ipom_hitbox_area_entered"]
+[connection signal="timeout" from="Invincibility timer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

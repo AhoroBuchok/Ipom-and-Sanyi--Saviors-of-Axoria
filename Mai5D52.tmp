@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://du3ifchrffjcd"]
+
+[ext_resource type="PackedScene" uid="uid://dlu3ik6mjs8pv" path="res://Ipom.tscn" id="1_pg1yn"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_pg1yn")]
+position = Vector2(640, 515)

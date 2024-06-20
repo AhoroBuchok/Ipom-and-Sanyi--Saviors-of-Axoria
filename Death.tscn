@@ -1,0 +1,144 @@
+[gd_scene load_steps=10 format=3 uid="uid://cj8np5aqxgiql"]
+
+[ext_resource type="Texture2D" uid="uid://bb85gd84rsoee" path="res://Ipom.png" id="1_jtl10"]
+[ext_resource type="Script" path="res://Death.gd" id="1_mkbvt"]
+[ext_resource type="PackedScene" uid="uid://c63lk655t8ef5" path="res://line.tscn" id="3_1ndi5"]
+[ext_resource type="Texture2D" uid="uid://b1kbmimcph830" path="res://a job well done.png" id="4_3geah"]
+[ext_resource type="FontFile" uid="uid://d1u2hwuxxqe4u" path="res://bullets/FORTE.TTF" id="5_8xes2"]
+[ext_resource type="AudioStream" uid="uid://ypfy5hbivy21" path="res://bullets/job well done.mp3" id="6_wg4pt"]
+
+[sub_resource type="Animation" id="Animation_4omk6"]
+resource_name = "play"
+length = 6.931
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Ipom:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-56, 465), Vector2(318, 476)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/AJobWellDone:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(457, -161), Vector2(473, 154)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/AJobWellDone:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.137501, -0.0832682]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Button:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.8, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(847, -130), Vector2(694, 390)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/ColorRect2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ranbp"]
+_data = {
+"play": SubResource("Animation_4omk6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nk0ck"]
+size = Vector2(158, 1533)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_mkbvt")
+line = ExtResource("3_1ndi5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ranbp")
+}
+autoplay = "play"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1188.0
+offset_bottom = 720.0
+color = Color(1, 0.63, 0.852, 1)
+
+[node name="die" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="die"]
+position = Vector2(1913, 1606.5)
+shape = SubResource("RectangleShape2D_nk0ck")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-167, -119)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="AJobWellDone" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(457, -161)
+rotation = 0.137501
+scale = Vector2(1.89062, 1.89062)
+texture = ExtResource("4_3geah")
+
+[node name="Ipom" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(-56, 465)
+scale = Vector2(1.46444, 1.46444)
+texture = ExtResource("1_jtl10")
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1221.0
+offset_bottom = 812.0
+color = Color(0, 0, 0, 1)
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 847.0
+offset_top = -130.0
+offset_right = 1104.0
+offset_bottom = -21.0
+rotation = -0.0496187
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_8xes2")
+theme_override_font_sizes/font_size = 76
+text = "Retry??"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_wg4pt")
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

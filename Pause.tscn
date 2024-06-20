@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbdgat5nhdmq7"]
+
+[ext_resource type="Script" path="res://Pause.gd" id="1_rqi17"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_rqi17")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 386.0
+offset_top = 260.0
+offset_right = 817.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 96
+text = "Continue"

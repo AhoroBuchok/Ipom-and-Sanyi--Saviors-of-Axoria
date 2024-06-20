@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dnvnr6fpn3bjt"
+path="res://.godot/imported/MAINMENU IPOM AND SANYI.mp3-202231abd252adaf3564cfc3efd1e69a.mp3str"
+
+[deps]
+
+source_file="res://music/MAINMENU IPOM AND SANYI.mp3"
+dest_files=["res://.godot/imported/MAINMENU IPOM AND SANYI.mp3-202231abd252adaf3564cfc3efd1e69a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

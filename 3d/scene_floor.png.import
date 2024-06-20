@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dl8et1ftd2obq"
+path.s3tc="res://.godot/imported/scene_floor.png-f5980a6bf7377a2f7c475031dd6cdcdc.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "43396f016ad3b39daab8e26de3bd9e37"
+}
+
+[deps]
+
+source_file="res://3d/scene_floor.png"
+dest_files=["res://.godot/imported/scene_floor.png-f5980a6bf7377a2f7c475031dd6cdcdc.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

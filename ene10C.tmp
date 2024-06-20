@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=3 uid="uid://dup6tdwutv1ab"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_a1xlh"]
+[ext_resource type="PackedScene" uid="uid://b21tfuuikdav0" path="res://enemybulletsmall.tscn" id="2_4ycsw"]
+[ext_resource type="PackedScene" uid="uid://d4fc4wvomx0x4" path="res://blood.tscn" id="3_363o7"]
+[ext_resource type="Texture2D" uid="uid://dls2hw26enkk1" path="res://NormalSquid/Squid_0000.png" id="3_csulo"]
+[ext_resource type="AudioStream" uid="uid://c6or21kmq44ol" path="res://sfx/hit.wav" id="4_6akn6"]
+[ext_resource type="Texture2D" uid="uid://dxkigbminreta" path="res://NormalSquid/Squid_0001.png" id="4_dd37a"]
+[ext_resource type="AudioStream" uid="uid://2v4l70g60eqk" path="res://sfx/kill.wav" id="5_ki0xr"]
+[ext_resource type="Texture2D" uid="uid://fpoexabj85or" path="res://NormalSquid/Squid_0002.png" id="5_uqmyd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nv7sj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_csulo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dd37a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uqmyd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4bl42"]
+radius = 58.2044
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(0.48137, 0.48137)
+script = ExtResource("1_a1xlh")
+bullet = ExtResource("2_4ycsw")
+blood = ExtResource("3_363o7")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.34411, 1.34411)
+sprite_frames = SubResource("SpriteFrames_nv7sj")
+frame_progress = 0.969438
+
+[node name="boi" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boi"]
+shape = SubResource("CircleShape2D_4bl42")
+
+[node name="hit sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6akn6")
+volume_db = 16.202
+
+[node name="kill sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ki0xr")
+volume_db = 24.0
+bus = &"sfx"
+
+[connection signal="area_entered" from="boi" to="." method="_on_area_2d_area_entered"]

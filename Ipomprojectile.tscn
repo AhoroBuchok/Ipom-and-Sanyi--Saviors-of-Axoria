@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxqktpumrwljo"]
+
+[ext_resource type="Script" path="res://Ipomprojectile.gd" id="1_6w53l"]
+[ext_resource type="Texture2D" uid="uid://i6vt2y8krfaf" path="res://bullets/ipom bullet.png" id="2_omv2g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sy1kg"]
+size = Vector2(6, 16)
+
+[node name="ipombullet" type="CharacterBody2D"]
+script = ExtResource("1_6w53l")
+
+[node name="ipombullet" type="Area2D" parent="."]
+position = Vector2(-22.7923, 0)
+rotation = 1.5708
+collision_layer = 4
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ipombullet"]
+position = Vector2(-6.70442e-07, -20.7923)
+shape = SubResource("RectangleShape2D_sy1kg")
+
+[node name="IpomBullet" type="Sprite2D" parent="."]
+modulate = Color(2.02149e-06, 0.728177, 0.150913, 1)
+position = Vector2(4.76837e-07, 2)
+rotation = 1.5708
+scale = Vector2(0.55012, 0.19012)
+texture = ExtResource("2_omv2g")
+
+[connection signal="area_entered" from="ipombullet" to="." method="_on_ipombullet_area_entered"]
