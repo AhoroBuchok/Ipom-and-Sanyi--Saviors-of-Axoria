@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxqktpumrwljo"]
+[gd_scene load_steps=5 format=3 uid="uid://cxqktpumrwljo"]
 
 [ext_resource type="Script" path="res://Ipomprojectile.gd" id="1_6w53l"]
 [ext_resource type="Texture2D" uid="uid://i6vt2y8krfaf" path="res://bullets/ipom bullet.png" id="2_omv2g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sy1kg"]
 size = Vector2(6, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2h6q2"]
+radius = 249.275
 
 [node name="ipombullet" type="CharacterBody2D"]
 script = ExtResource("1_6w53l")
@@ -26,4 +29,12 @@ rotation = 1.5708
 scale = Vector2(0.55012, 0.19012)
 texture = ExtResource("2_omv2g")
 
+[node name="detector" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
+shape = SubResource("CircleShape2D_2h6q2")
+
 [connection signal="area_entered" from="ipombullet" to="." method="_on_ipombullet_area_entered"]
+[connection signal="area_entered" from="detector" to="." method="_on_detector_area_entered"]
