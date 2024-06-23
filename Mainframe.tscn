@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://du3ifchrffjcd"]
+[gd_scene load_steps=19 format=3 uid="uid://du3ifchrffjcd"]
 
 [ext_resource type="PackedScene" uid="uid://dlu3ik6mjs8pv" path="res://Ipom.tscn" id="1_pg1yn"]
 [ext_resource type="Script" path="res://Mainframe.gd" id="1_rhkoc"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://dp3aqvuxmaeac" path="res://SmallSquid.tscn" id="7_wl81f"]
 [ext_resource type="FontFile" uid="uid://d1u2hwuxxqe4u" path="res://bullets/FORTE.TTF" id="8_spyj0"]
 [ext_resource type="Script" path="res://Node.gd" id="9_ugqjy"]
-[ext_resource type="PackedScene" uid="uid://cxqktpumrwljo" path="res://Ipomprojectile.tscn" id="11_sh5qq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mshte"]
 size = Vector2(20, 661)
@@ -76,7 +75,7 @@ _data = {
 size = Vector2(37.5, 1284)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mgak"]
-size = Vector2(1711, 20)
+size = Vector2(1789.5, 26)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_rhkoc")
@@ -151,11 +150,11 @@ position = Vector2(-323, 353)
 shape = SubResource("RectangleShape2D_guxmy")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="finalpoint"]
-position = Vector2(1431.75, 374)
+position = Vector2(1462, 371)
 shape = SubResource("RectangleShape2D_guxmy")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="finalpoint"]
-position = Vector2(592, 981)
+position = Vector2(552.75, 984)
 shape = SubResource("RectangleShape2D_1mgak")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="finalpoint"]
@@ -174,9 +173,6 @@ color = Color(0, 0, 0, 1)
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("9_ugqjy")
-
-[node name="ipombullet" parent="." instance=ExtResource("11_sh5qq")]
-position = Vector2(317, 170)
 
 [connection signal="die" from="." to="Node" method="_on_node_2d_die"]
 [connection signal="finished" from="Music1" to="." method="_on_music_1_finished"]

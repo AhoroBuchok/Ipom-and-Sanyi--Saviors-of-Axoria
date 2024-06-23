@@ -1,7 +1,8 @@
 extends GPUParticles2D
 
-func _process(delta):
-	await get_tree().create_timer(0.1).timeout
+func _on_timer_2_timeout():
 	emitting = false
-	await get_tree().create_timer(1).timeout
+	$Timer.start()
+
+func _on_timer_timeout():
 	self.queue_free()

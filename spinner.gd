@@ -24,8 +24,7 @@ func _physics_process(delta):
 		$Icon3.global_rotation_degrees = 0
 		$Icon2.global_rotation_degrees = 0
 		$Icon4.global_rotation_degrees = 0
-		$Headspinnger.global_rotation_degrees = 0
-		$Label.text = "I'm " + str(hp) + " hp :D"
+		$Headspinnger.global_rotation_degrees = 0	
 		move_and_slide()
 
 

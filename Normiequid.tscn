@@ -36,6 +36,7 @@ bullet = ExtResource("2_4ycsw")
 blood = ExtResource("3_363o7")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
+rotation = -1.57079
 scale = Vector2(1.34411, 1.34411)
 sprite_frames = SubResource("SpriteFrames_nv7sj")
 frame_progress = 0.206168
